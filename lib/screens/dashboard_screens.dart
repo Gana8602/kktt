@@ -6,7 +6,7 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white30,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -27,7 +27,8 @@ class DashboardScreen extends StatelessWidget {
                     const SizedBox(width: 10),
                     const Text(
                       'Hello, Livia Vaccaro',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -84,7 +85,8 @@ class DashboardScreen extends StatelessWidget {
                       ),
                       const Text(
                         '85%',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -101,9 +103,11 @@ class DashboardScreen extends StatelessWidget {
             const SizedBox(height: 10),
             Row(
               children: [
-                _buildTaskCard('Office Project', 'Grocery shopping app design', Colors.blue),
+                _buildTaskCard('Office Project', 'Grocery shopping app design',
+                    Colors.blue),
                 const SizedBox(width: 10),
-                _buildTaskCard('Personal Project', 'Uber Eats redesign challenge', Colors.redAccent),
+                _buildTaskCard('Personal Project',
+                    'Uber Eats redesign challenge', Colors.redAccent),
               ],
             ),
             const SizedBox(height: 20),
@@ -117,9 +121,12 @@ class DashboardScreen extends StatelessWidget {
             Wrap(
               spacing: 10,
               children: [
-                _buildTaskGroupChip('Office Project', Colors.orangeAccent),
-                _buildTaskGroupChip('Personal Project', Colors.green),
-                _buildTaskGroupChip('Daily Study', Colors.purple),
+                _buildTaskGroupChip('Office Project', '20 Tasks',
+                    Colors.orangeAccent, 0.70, '70%'),
+                _buildTaskGroupChip(
+                    'Personal Project', '30 tasks', Colors.green, 0.50, "50%"),
+                _buildTaskGroupChip(
+                    'Daily Study', '30T asks', Colors.purple, 0.68, '68%'),
               ],
             ),
           ],
@@ -162,11 +169,32 @@ class DashboardScreen extends StatelessWidget {
   }
 
   // Helper widget for Task Group Chip
-  Widget _buildTaskGroupChip(String label, Color color) {
-    return Chip(
-      label: Text(label, style: TextStyle(color: Colors.white)),
-      backgroundColor: color,
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+  Widget _buildTaskGroupChip(
+      String label, String subtitle, Color color, double val, String percent) {
+    return Card(
+      elevation: 0,
+      color: Colors.white,
+      child: ListTile(
+        leading: Icon(Icons.cases_outlined),
+        title: Text(label, style: TextStyle(color: color)),
+        subtitle: Text(subtitle),
+        trailing: Stack(alignment: Alignment.center, children: [
+          CircularProgressIndicator(
+            value: val,
+            backgroundColor: Colors.white38,
+            color: Colors.blue,
+            strokeWidth: 4,
+          ),
+          Text(
+            percent,
+            style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+          ),
+        ]),
+      ),
+
+      // label: Text(label, style: TextStyle(color: Colors.white)),
+      // backgroundColor: color,
+      // padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
     );
   }
 }
